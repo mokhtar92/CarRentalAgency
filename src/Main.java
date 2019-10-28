@@ -1,43 +1,25 @@
-import car.Car;
-import car.FourByFour;
-import car.SUV;
-import car.Sedan;
-import customer.Customer;
-import format.JSONFormat;
-import rental.CarRental;
-import rental.RentDetails;
-
 public class Main {
 
     public static void main(String[] args) {
-        Car blueHonda = new Sedan("Blue Honda 2008");
-        Car greyJeep = new FourByFour("Grey Jeep 2013");
-        Car RedSunny = new Sedan("Red Sunny 2014");
-        Car BlueBMW = new SUV("Blue X3 2017");
+        Vehicle blueHonda = new Vehicle("Blue Honda 2008", Vehicle.SEDAN);
+        Vehicle greyJeep = new Vehicle("Grey Jeep 2013", Vehicle.FOURxFOUR);
+        Vehicle RedSunny = new Vehicle("Red Sunny 2014", Vehicle.SEDAN);
+        Vehicle BlueBMW = new Vehicle("Blue X3 2017", Vehicle.SUV);
 
-        RentDetails hondaDetails = new RentDetails(431, 4, false);
-        CarRental hondaRental = new CarRental(blueHonda, hondaDetails);
-
-        RentDetails jeepDetails = new RentDetails(744, 4, false);
-        CarRental jeepRental = new CarRental(greyJeep, jeepDetails);
-
-        RentDetails sunnyDetails = new RentDetails(591, 3, true);
-        CarRental sunnyRental = new CarRental(RedSunny, sunnyDetails);
-
-        RentDetails x3Details = new RentDetails(240, 5, false);
-        CarRental x3Rental = new CarRental(BlueBMW, x3Details);
+        Rental hondaRental = new Rental(blueHonda, 431, 4, false);
+        Rental jeepRental = new Rental(greyJeep, 744, 4, false);
+        Rental sunnnyRental = new Rental(RedSunny, 591, 3, true);
+        Rental x3Rental = new Rental(BlueBMW, 240, 5, false);
 
         Customer uber = new Customer("Uber");
-        Customer hilton = new Customer("Hilton");
+        Customer hitlon = new Customer("Hilton");
 
-        uber.addCarRental(hondaRental);
-        uber.addCarRental(jeepRental);
-        uber.addCarRental(sunnyRental);
+        uber.addRental(hondaRental);
+        uber.addRental(jeepRental);
+        uber.addRental(sunnnyRental);
 
-        hilton.addCarRental(x3Rental);
+        hitlon.addRental(x3Rental);
 
         System.out.println(uber.statement());
-
-        System.out.println(uber.statement(JSONFormat.getInstance()));
     }
 }
